@@ -1,35 +1,92 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+* {
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --navy: #0a1628;
-  --navy-mid: #0f2044;
-  --navy-card: #112240;
-  --blue-bright: #1e90ff;
-  --blue-glow: #00d4ff;
-  --green-smart: #00e676;
-  --green-dim: #00c853;
-  --white: #ffffff;
-  --white-dim: rgba(255,255,255,0.85);
-  --white-faint: rgba(255,255,255,0.1);
-  --glass: rgba(255,255,255,0.07);
-  --glass-border: rgba(255,255,255,0.12);
-  --font-display: 'Inter', system-ui, sans-serif;
-  --radius: 14px;
-  --radius-sm: 8px;
-  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --ink: #eef7ff;
+  --muted: rgba(238, 247, 255, 0.68);
+  --faint: rgba(238, 247, 255, 0.42);
+  --night: #06111f;
+  --night-2: #081827;
+  --panel: rgba(10, 24, 39, 0.78);
+  --panel-strong: rgba(9, 20, 33, 0.92);
+  --line: rgba(175, 224, 255, 0.16);
+  --line-strong: rgba(139, 232, 211, 0.38);
+  --cyan: #4dd8ff;
+  --mint: #38f2ad;
+  --lime: #bdf66f;
+  --amber: #ffd166;
+  --coral: #ff6b6b;
+  --violet: #a78bfa;
+  --shadow: 0 20px 70px rgba(0, 0, 0, 0.42);
+  --shadow-soft: 0 14px 36px rgba(2, 8, 23, 0.32);
+  --radius: 8px;
+  --radius-sm: 6px;
+  --font-display: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-html, body, #root {
-  height: 100%;
+html,
+body,
+#root {
+  min-height: 100%;
   width: 100%;
-  background: var(--navy);
-  color: var(--white);
+}
+
+body {
+  background:
+    radial-gradient(circle at 14% 10%, rgba(77, 216, 255, 0.16), transparent 30%),
+    radial-gradient(circle at 78% 18%, rgba(56, 242, 173, 0.13), transparent 28%),
+    linear-gradient(135deg, #04101b 0%, #071526 42%, #0a1c2c 100%);
+  color: var(--ink);
   font-family: var(--font-display);
   overflow: hidden;
+  text-rendering: geometricPrecision;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(77, 216, 255, 0.28);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(77, 216, 255, 0.56), rgba(56, 242, 173, 0.42));
+  border: 2px solid rgba(4, 16, 27, 0.9);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

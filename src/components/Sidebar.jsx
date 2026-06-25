@@ -1,17 +1,17 @@
 import '../styles/Sidebar.css'
 
 const ALGORITHMS = [
-  { id: 'astar',   icon: '⭐', label: 'A* Search',              complexity: 'O(b^d)' },
-  { id: 'bfs',     icon: '🌐', label: 'BFS',                    complexity: 'O(V+E)' },
-  { id: 'dfs',     icon: '🌳', label: 'DFS',                    complexity: 'O(V+E)' },
-  { id: 'greedy',  icon: '🚛', label: 'Greedy Best First',      complexity: 'O(b^m)' },
-  { id: 'ucs',     icon: '🛣️', label: 'Uniform Cost Search',    complexity: 'O(b^(C*/ε))' },
-  { id: 'csp', icon: '🧩', label: 'Constraint Satisfaction Problem', complexity: 'NP-Complete' },
+  { id: 'astar', icon: 'A*', label: 'A* Search', complexity: 'O(b^d)' },
+  { id: 'bfs', icon: 'BF', label: 'BFS', complexity: 'O(V+E)' },
+  { id: 'dfs', icon: 'DF', label: 'DFS', complexity: 'O(V+E)' },
+  { id: 'greedy', icon: 'GB', label: 'Greedy Best First', complexity: 'O(b^m)' },
+  { id: 'ucs', icon: 'UC', label: 'Uniform Cost Search', complexity: 'O(b^(C*/e))' },
+  { id: 'csp', icon: 'CS', label: 'Constraint Satisfaction Problem', complexity: 'NP-Complete' },
 ]
 
 const PREDICTIONS = [
-  { id: 'waste',   icon: '🗑️', label: 'Waste Prediction',      complexity: 'AI Model' },
-  { id: 'traffic', icon: '🚦', label: 'Traffic Prediction',     complexity: 'AI Model' },
+  { id: 'waste', icon: 'WP', label: 'Waste Prediction', complexity: 'AI Model' },
+  { id: 'traffic', icon: 'TP', label: 'Traffic Prediction', complexity: 'AI Model' },
 ]
 
 export default function Sidebar({ activeAlgo, onAlgoChange }) {

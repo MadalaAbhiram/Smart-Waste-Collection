@@ -2,73 +2,73 @@ import '../styles/InfoPanel.css'
 
 const ALGO_INFO = {
   astar: {
-    icon: '⭐',
+    icon: 'A*',
     name: 'A* Search',
-    desc: 'A* combines the actual path cost g(n) with a heuristic estimate h(n) to find the optimal path efficiently. It guarantees the shortest path when using an admissible heuristic.',
+    desc: 'A* combines actual path cost g(n) with a heuristic h(n) = Manhattan distance to destination. Edge costs are weighted by real-time traffic (high ×2, medium ×1.4) so the truck automatically avoids congested roads and finds the true optimal route.',
     time: 'O(b^d)',
     space: 'O(b^d)',
-    apps: 'GPS navigation, game pathfinding, robot motion planning, network routing.',
+    apps: 'GPS navigation, robot motion planning, network routing, smart waste collection.',
   },
   bfs: {
-    icon: '🌐',
+    icon: 'BF',
     name: 'Breadth-First Search',
-    desc: 'BFS explores nodes level by level outward from the source. It guarantees the shortest path in unweighted graphs and visits all nodes at each depth before going deeper.',
+    desc: 'BFS explores nodes level by level from the depot. It finds the path with the fewest road segments. Reports actual edge-weight distance for fuel and time calculations, though it does not account for traffic conditions.',
     time: 'O(V + E)',
     space: 'O(V)',
-    apps: 'Shortest path in unweighted graphs, social network analysis, web crawling, peer-to-peer networks.',
+    apps: 'Shortest-hop routing, social network analysis, web crawling.',
   },
   dfs: {
-    icon: '🌳',
+    icon: 'DF',
     name: 'Depth-First Search',
-    desc: 'DFS explores as far as possible along each branch before backtracking. Memory efficient, though it does not guarantee shortest paths. Follows a stack-based traversal.',
+    desc: 'DFS dives as deep as possible along each branch before backtracking. It explores more nodes than necessary but uses low memory. Reports actual edge-weight distance — not optimal, but shows contrast with other algorithms.',
     time: 'O(V + E)',
     space: 'O(V)',
-    apps: 'Topological sorting, cycle detection, maze generation, solving puzzles with backtracking.',
+    apps: 'Topological sorting, cycle detection, maze solving, exploring all possible routes.',
   },
   greedy: {
-    icon: '🚛',
+    icon: 'GB',
     name: 'Greedy Best-First Search',
-    desc: 'Always expands the node that appears closest to the goal according to the heuristic h(n). Fast but does not guarantee an optimal path since it ignores actual path cost.',
+    desc: 'Greedy always moves toward the node that looks closest to the destination by heuristic. Traffic is used to break ties. If the truck gets stuck, A* takes over to complete the route — ensuring a valid path is always returned.',
     time: 'O(b^m)',
     space: 'O(b^m)',
-    apps: 'Approximate route planning, nearest bin assignment, quick delivery scheduling.',
+    apps: 'Approximate route planning, nearest bin assignment, quick scheduling under uncertainty.',
   },
   ucs: {
-    icon: '🛣️',
+    icon: 'UC',
     name: 'Uniform Cost Search',
-    desc: 'UCS expands nodes in order of increasing path cost g(n). It guarantees the optimal (least-cost) path but may explore more nodes than A* since it ignores the heuristic.',
-    time: 'O(b^(C*/ε))',
-    space: 'O(b^(C*/ε))',
-    apps: 'Optimal route planning, weighted graph traversal, minimum-cost task scheduling.',
+    desc: 'UCS expands nodes in order of cumulative edge cost including traffic multipliers (high ×2, medium ×1.4). It guarantees the minimum-cost route, ignoring the heuristic entirely — optimal but explores more nodes than A*.',
+    time: 'O(b^(C*/e))',
+    space: 'O(b^(C*/e))',
+    apps: 'Minimum-cost route planning, weighted graph traversal, task scheduling.',
   },
   csp: {
-  icon: '🧩',
-  name: 'Constraint Satisfaction Problem (CSP)',
-  desc: 'CSP selects the best feasible waste collection route by satisfying multiple constraints such as truck capacity, road availability, traffic conditions, collection time and bin priority.',
-  time: 'Exponential (Worst Case)',
-  space: 'O(n)',
-  apps: 'Vehicle Routing, Timetable Scheduling, Resource Allocation, Smart Waste Collection.',
+    icon: 'CS',
+    name: 'Constraint Satisfaction Problem',
+    desc: 'CSP uses backtracking search with real constraint checking: truck capacity ≤ 4 bins, route time ≤ 90 min, blocked roads (C↔F, A↔B) avoided. Full bins are prioritized over half-full ones. Only feasible paths are returned.',
+    time: 'Exponential',
+    space: 'O(n)',
+    apps: 'Vehicle routing with capacity limits, timetable scheduling, resource allocation.',
   },
   waste: {
-    icon: '🗑️',
+    icon: 'WP',
     name: 'AI Waste Prediction',
-    desc: 'Machine learning models analyze fill rate patterns and historical data to predict bin states — Empty, Half-Full, or Full — before physical collection, enabling proactive routing.',
+    desc: 'Scans all bins using fill-level sensors. B and E are half-full, C and G are full — these are flagged for priority collection. The prediction output informs which bins the routing algorithm should target first.',
     time: 'O(n × f)',
     space: 'O(n)',
     apps: 'Smart city bin monitoring, dynamic collection scheduling, sensor-based waste management.',
   },
   traffic: {
-    icon: '🚦',
+    icon: 'TP',
     name: 'AI Traffic Prediction',
-    desc: 'Real-time traffic state prediction using LSTM-based deep learning models. Road segments are classified as Low, Medium, or High congestion to dynamically reroute the garbage truck.',
+    desc: 'Scans all road segments and classifies them as low, medium, or high congestion. High-traffic roads (C↔E, A↔D, C↔F) incur 2× cost penalty in routing. Medium roads cost 1.4×. This makes A*, UCS, and Greedy dynamically reroute around congestion.',
     time: 'O(t × s)',
     space: 'O(t)',
-    apps: 'Smart traffic management, adaptive route optimization, emergency vehicle routing, urban planning.',
+    apps: 'Adaptive route optimization, emergency vehicle routing, urban traffic management.',
   },
 }
 
 export default function InfoPanel({ activeAlgo }) {
-  const info = ALGO_INFO[activeAlgo] || ALGO_INFO['astar']
+  const info = ALGO_INFO[activeAlgo] || ALGO_INFO.astar
   return (
     <div className="infopanel">
       <div className="infopanel-title">
@@ -77,8 +77,8 @@ export default function InfoPanel({ activeAlgo }) {
       </div>
       <p className="infopanel-desc">{info.desc}</p>
       <div className="infopanel-meta">
-        <div className="infopanel-chip">⏱ Time <strong>{info.time}</strong></div>
-        <div className="infopanel-chip">💾 Space <strong>{info.space}</strong></div>
+        <div className="infopanel-chip">Time <strong>{info.time}</strong></div>
+        <div className="infopanel-chip">Space <strong>{info.space}</strong></div>
       </div>
       <div className="infopanel-app-label">Applications</div>
       <div className="infopanel-app">{info.apps}</div>

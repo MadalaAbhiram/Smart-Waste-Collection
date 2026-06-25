@@ -1,39 +1,53 @@
 .infopanel {
-  background: linear-gradient(135deg, #0a1628 0%, #0f2044 100%);
-  border-right: 1px solid var(--glass-border);
-  padding: 14px 18px;
-  overflow-y: auto;
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  padding: 18px 20px;
+  overflow-y: auto;
+  background:
+    linear-gradient(135deg, rgba(8, 22, 36, 0.78), rgba(7, 19, 31, 0.66)),
+    rgba(255, 255, 255, 0.05);
+}
+
+.infopanel::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--cyan), var(--mint), transparent);
+  opacity: 0.85;
 }
 
 .infopanel-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--white);
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 2px;
+  gap: 10px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 850;
 }
 
 .infopanel-title-icon {
-  background: linear-gradient(135deg, #1e90ff, #00d4ff);
-  border-radius: 5px;
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  box-shadow: 0 0 8px rgba(30,144,255,0.4);
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(77, 216, 255, 0.36);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, rgba(77, 216, 255, 0.22), rgba(56, 242, 173, 0.14));
+  color: var(--mint);
+  font-size: 11px;
+  font-weight: 900;
+  box-shadow: 0 0 24px rgba(77, 216, 255, 0.16);
 }
 
 .infopanel-desc {
-  font-size: 11px;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.5;
+  max-width: 920px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
 }
 
 .infopanel-meta {
@@ -43,33 +57,34 @@
 }
 
 .infopanel-chip {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 5px;
-  padding: 3px 8px;
-  font-size: 10px;
-  color: rgba(255,255,255,0.65);
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--faint);
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .infopanel-chip strong {
-  color: var(--blue-glow);
-  font-weight: 600;
-}
-
-.infopanel-app {
-  font-size: 10.5px;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.6;
+  color: var(--cyan);
+  font-weight: 850;
 }
 
 .infopanel-app-label {
-  font-size: 9px;
+  margin-top: 2px;
+  color: var(--faint);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.3);
-  font-weight: 600;
-  margin-bottom: 2px;
+}
+
+.infopanel-app {
+  color: rgba(238, 247, 255, 0.58);
+  font-size: 11.5px;
+  line-height: 1.65;
 }

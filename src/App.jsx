@@ -15,8 +15,11 @@ export default function App() {
     visitedNodes: [],
     distance: 0,
     time: 0,
+    fuelUsed: 0,
     fuelSaved: 0,
     wasteCollected: 0,
+    constraintsMet: 0,
+    steps: [],
   })
 
   const handleAlgoChange = useCallback((algo) => {
@@ -32,15 +35,19 @@ export default function App() {
       <div className="app-navbar">
         <Navbar />
       </div>
-      <div className="app-sidebar">
-        <Sidebar activeAlgo={activeAlgo} onAlgoChange={handleAlgoChange} />
-      </div>
       <div className="app-main">
         <div className="app-map-area">
           <SmartMap activeAlgo={activeAlgo} onStatsUpdate={handleStatsUpdate} />
         </div>
-        <div className="app-bottom">
+      </div>
+      <div className="app-review-panel">
+        <div className="app-sidebar">
+          <Sidebar activeAlgo={activeAlgo} onAlgoChange={handleAlgoChange} />
+        </div>
+        <div className="app-panel-card">
           <InfoPanel activeAlgo={activeAlgo} />
+        </div>
+        <div className="app-panel-card app-stats-card">
           <Statistics stats={stats} />
         </div>
       </div>
