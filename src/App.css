@@ -1,0 +1,62 @@
+.app {
+  display: grid;
+  grid-template-rows: 56px 1fr;
+  grid-template-columns: 220px 1fr;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.app-navbar {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
+.app-sidebar {
+  grid-column: 1;
+  grid-row: 2;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.app-main {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app-map-area {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.app-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  height: 200px;
+  border-top: 1px solid var(--glass-border);
+}
+
+@media (max-width: 900px) {
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: 56px auto 1fr auto;
+    overflow-y: auto;
+  }
+  .app-sidebar {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .app-main {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .app-bottom {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+}

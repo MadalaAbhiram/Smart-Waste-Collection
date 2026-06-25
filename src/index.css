@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --navy: #0a1628;
+  --navy-mid: #0f2044;
+  --navy-card: #112240;
+  --blue-bright: #1e90ff;
+  --blue-glow: #00d4ff;
+  --green-smart: #00e676;
+  --green-dim: #00c853;
+  --white: #ffffff;
+  --white-dim: rgba(255,255,255,0.85);
+  --white-faint: rgba(255,255,255,0.1);
+  --glass: rgba(255,255,255,0.07);
+  --glass-border: rgba(255,255,255,0.12);
+  --font-display: 'Inter', system-ui, sans-serif;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-display);
+  overflow: hidden;
+}
